@@ -14,12 +14,14 @@ cd plc-trend-visualizer
 npm install
 
 Run the development server:
+
 3.npm run dev
 
 4.Open your browser at http://localhost:3000
  to access the application.
-
-5. output 
+ 
+5. output
+   
  # Architecture Decisions & Performance Optimizations
 Next.js with React -  responsive SPA experience.
 
@@ -52,7 +54,7 @@ Subscribes to PLC stream and plots selected variables.
 LoadTuning.tsx
 Provides a single Load Start / Stop button and frequency controls.
 
-  output file- screenshot of the output.
+  output file- screenshot of the output and recorded screen.
 
 # Any known limitations or trade-offs
 
