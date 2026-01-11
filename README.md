@@ -11,22 +11,15 @@ git clone https://github.com/MeghanaDevaliya/PLC_Trend_Visualizer.git
 cd plc-trend-visualizer
 
 2. Install dependencies:
-
 npm install
-# or
-yarn install
 
 Run the development server:
-
 3.npm run dev
-# or
-yarn dev
-
 
 4.Open your browser at http://localhost:3000
  to access the application.
 
-
+5. output 
  # Architecture Decisions & Performance Optimizations
 Next.js with React -  responsive SPA experience.
 
@@ -59,6 +52,7 @@ Subscribes to PLC stream and plots selected variables.
 LoadTuning.tsx
 Provides a single Load Start / Stop button and frequency controls.
 
+  output file- screenshot of the output.
 
 # Any known limitations or trade-offs
 
