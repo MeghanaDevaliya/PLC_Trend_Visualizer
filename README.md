@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PLC Variable Trend Visualizer
 
-## Getting Started
+A real-time variable trend visualizer for industrial PLC systems built using Next.js, React, RxJS, and Highcharts. This tool allows automation engineers to monitor live PLC variables, debug control logic, and tune system performance.
 
-First, run the development server:
 
-```bash
-npm run dev
+# Setup and run instructions
+1. Clone the repository :
+
+bash /cmd
+git clone https://github.com/MeghanaDevaliya/PLC_Trend_Visualizer.git
+cd plc-trend-visualizer
+
+2. Install dependencies:
+
+npm install
+# or
+yarn install
+
+Run the development server:
+
+3.npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+4.Open your browser at http://localhost:3000
+ to access the application.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+ # Architecture Decisions & Performance Optimizations
+Next.js with React -  responsive SPA experience.
 
-To learn more about Next.js, take a look at the following resources:
+RxJS - simulating PLC data streams .
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Context API manages state (variables, selectedVars, isRunning, frequency) and updates efficiently.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+TrendChart subscription -  updates chart when isRunning === true, reducing unnecessary re-renders 
 
-## Deploy on Vercel
+# Chart Rendering Approach
+Highcharts (SVG) is used for trend visualization.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Reason for SVG over Canvas:
+SVG allows interactive elements, tooltips, legends, and axis labels with minimal configuration.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The dataset is relatively small (50 points per variable, max 4 variables), so SVG performs well.
+ 
+
+ # Component Structure & Separation of Concerns
+
+PlcContext.tsx
+Manages data stream, live variables, selected variables, and load state.
+
+VariableList.tsx
+Displays variable names and live values. Handles selection and error messages.
+
+TrendChart.tsx
+Subscribes to PLC stream and plots selected variables.
+
+LoadTuning.tsx
+Provides a single Load Start / Stop button and frequency controls.
+
+
+# Any known limitations or trade-offs
+
+-SVG may become less efficient for thousands of data points.
+-more varaible selection may degrade UI performance. 
+-after page refresh trend data will be lost as its not stored.
+
+
